@@ -1,0 +1,42 @@
+CREATE TABLE race (
+	Id SERIAL PRIMARY KEY,
+	name CHARACTER VARYING(30) NOT NULL,
+	description text
+);
+
+CREATE TABLE hero (
+	Id SERIAL PRIMARY KEY,
+	name CHARACTER VARYING(30) NOT NULL,
+	description text,
+	hp INTEGER,
+	mp INTEGER,
+	RaceId INTEGER REFERENCES race(Id)
+);
+
+CREATE TABLE creature (
+	Id SERIAL PRIMARY KEY,
+	name CHARACTER VARYING(30) NOT NULL,
+	description text,
+	hp INTEGER,
+	RaceId INTEGER REFERENCES race(Id)
+);
+
+CREATE TABLE spell (
+	Id SERIAL PRIMARY KEY,
+	name CHARACTER VARYING(30) NOT NULL,
+	description text,
+	hp INTEGER
+);
+
+CREATE TABLE spell_list (
+	Id SERIAL PRIMARY KEY,
+	SpellId INTEGER REFERENCES spell(Id),
+	HeroId INTEGER REFERENCES hero(Id)
+);
+
+CREATE TABLE army (
+	Id SERIAL PRIMARY KEY,
+	HeroId INTEGER REFERENCES hero(Id),
+	CreatureId INTEGER REFERENCES creature(Id),
+	count INTEGER
+)
