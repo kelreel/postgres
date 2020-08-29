@@ -1,4 +1,5 @@
 const Koa = require('koa')
+const cors = require('@koa/cors')
 const bodyParser = require('koa-bodyparser')
 
 const Knex = require('knex')
@@ -21,6 +22,7 @@ Model.knex(knex)
 const app = new Koa()
 
 // Init app middlewares
+app.use(cors())
 app.use(errorHandler)
 app.use(bodyParser())
 
