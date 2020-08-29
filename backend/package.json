@@ -7,7 +7,7 @@
     "migrate": "knex migrate:latest",
     "migrate1": "knex migrate:make mgr1",
     "start": "npm run migrate && node app",
-    "dev": "npm run migrate && nodemon app"
+    "dev": "npm run migrate && nodemon app --verbose"
   },
   "engines": {
     "node": ">=8.0.0"

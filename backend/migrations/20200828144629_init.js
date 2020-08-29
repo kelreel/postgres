@@ -83,8 +83,6 @@ exports.up = function (knex) {
         .inTable('spell')
         .onDelete('CASCADE')
         .index()
-
-      table.integer('count')
     })
 }
 

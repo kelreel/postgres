@@ -5,6 +5,7 @@ const Knex = require('knex')
 const knexConfig = require('./knexfile')
 const { Model, ForeignKeyViolationError, ValidationError } = require('objection')
 
+// Import routers
 const raceRouter = require('./routes/race')
 const heroRouter = require('./routes/hero')
 const creatureRouter = require('./routes/creature')

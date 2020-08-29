@@ -29,6 +29,9 @@ class Hero extends Model {
     // One way to prevent circular references
     // is to require the model classes here.
     const Race = require('./Race')
+    const Army = require('./Army')
+    const Creature = require('./Creature')
+    const Spell = require('./Spell')
 
     return {
       race: {
@@ -41,6 +44,30 @@ class Hero extends Model {
         join: {
           from: 'hero.raceId',
           to: 'race.id',
+        },
+      },
+      army: {
+        relation: Model.ManyToManyRelation,
+        modelClass: Creature,
+        join: {
+          from: 'hero.id',
+          through: {
+            from: 'army.heroId',
+            to: 'army.creatureId',
+          },
+          to: 'creature.id',
+        },
+      },
+      spell: {
+        relation: Model.ManyToManyRelation,
+        modelClass: Spell,
+        join: {
+          from: 'hero.id',
+          through: {
+            from: 'spell_list.heroId',
+            to: 'spell_list.spellId',
+          },
+          to: 'spell.id',
         },
       },
     }

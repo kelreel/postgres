@@ -11,7 +11,7 @@ class Army extends Model {
   static get jsonSchema() {
     return {
       type: 'object',
-      required: ['name'],
+      required: ['heroId', 'creatureId', 'count'],
 
       properties: {
         id: { type: 'integer' },

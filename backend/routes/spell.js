@@ -12,4 +12,19 @@ router.post('/', async (ctx) => {
   ctx.body = spell
 })
 
+router.patch('/:id', async (ctx) => {
+  const numUpdated = await Spell.query().findById(ctx.params.id).patch(ctx.request.body)
+  ctx.body = {
+    success: numUpdated == 1,
+  }
+})
+
+router.delete('/:id', async (ctx) => {
+  const numDeleted = await Spell.query().findById(ctx.params.id).delete()
+
+  ctx.body = {
+    success: numDeleted == 1,
+  }
+})
+
 module.exports = router

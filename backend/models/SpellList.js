@@ -11,7 +11,7 @@ class SpellList extends Model {
   static get jsonSchema() {
     return {
       type: 'object',
-      required: ['name'],
+      required: ['heroId', 'spellId'],
 
       properties: {
         id: { type: 'integer' },
@@ -38,13 +38,13 @@ class SpellList extends Model {
           to: 'hero.id',
         },
       },
-      creature: {
+      spell: {
         relation: Model.HasManyRelation,
-        modelClass: Creature,
+        modelClass: Spell,
 
         join: {
-          from: 'spell_list.creatureId',
-          to: 'creature.id',
+          from: 'spell_list.spellId',
+          to: 'spell.id',
         },
       },
     }
