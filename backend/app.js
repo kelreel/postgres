@@ -1,39 +1,42 @@
 const Koa = require('koa')
-const KoaRouter = require('koa-router')
 const bodyParser = require('koa-bodyparser')
 
 const Knex = require('knex')
 const knexConfig = require('./knexfile')
-const registerApi = require('./api')
 const { Model, ForeignKeyViolationError, ValidationError } = require('objection')
 
-// Initialize knex.
-const knex = Knex(knexConfig.development)
+const raceRouter = require('./routes/race')
+const heroRouter = require('./routes/hero')
+const creatureRouter = require('./routes/creature')
+const spellRouter = require('./routes/spell')
+const spell_list_Router = require('./routes/spell_list')
+const armyRouter = require('./routes/army')
 
-// Bind all Models to a knex instance. If you only have one database in
-// your server this is all you have to do. For multi database systems, see
-// the Model.bindKnex() method.
+// Init knex.
+const knex = Knex(knexConfig.development)
 Model.knex(knex)
 
-const router = new KoaRouter()
+// Init app
 const app = new Koa()
 
-// Register our REST API.
-registerApi(router)
-
+// Init app middlewares
 app.use(errorHandler)
 app.use(bodyParser())
-app.use(router.routes())
-app.use(router.allowedMethods())
 
+// Init routes
+app.use(raceRouter.routes())
+app.use(heroRouter.routes())
+app.use(creatureRouter.routes())
+app.use(spellRouter.routes())
+app.use(armyRouter.routes())
+app.use(spell_list_Router.routes())
+
+// Start app server
 const server = app.listen(8641, () => {
   console.log('Example app listening at port %s', server.address().port)
 })
 
-// Error handling.
-//
-// NOTE: This is not a good error handler, this is a simple one. See the error handing
-//       recipe for a better handler: http://vincit.github.io/objection.js/recipes/error-handling.html
+// Error handling
 async function errorHandler(ctx, next) {
   try {
     await next()
