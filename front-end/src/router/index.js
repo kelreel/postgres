@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Race from "../views/Race.vue";
+import Hero from "../views/Hero.vue";
 
 Vue.use(VueRouter);
 
@@ -12,15 +13,14 @@ const routes = [
     component: Home,
   },
   {
-    path: "/about",
-    name: "About",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
-  },
-  {
     path: "/race",
     name: "Race",
     component: Race,
+  },
+  {
+    path: "/hero",
+    name: "Hero",
+    component: Hero,
   },
 ];
 

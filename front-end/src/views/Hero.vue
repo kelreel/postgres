@@ -1,9 +1,9 @@
 <template>
   <main class="view">
-    <h1>Расы</h1>
+    <h1>Герои</h1>
     <vuetable
       ref="vuetable"
-      :fields="['id', 'name', 'description', 'actions']"
+      :fields="['id', 'name', 'description', 'mp', 'hp', 'actions']"
       :api-mode="false"
       :data="data"
       :css="css.table"
@@ -22,9 +22,12 @@
     </vuetable>
     <div class="action-form">
       <h3>{{action.title}} {{action.item && action.item.name}}</h3>
-      <EditRaceForm
-        :race_name="action.item ? action.item.name : ''"
-        :race_description="action.item ? action.item.description : ''"
+      <EditHeroForm
+        :item_name="action.item ? action.item.name : ''"
+        :item_description="action.item ? action.item.description : ''"
+        :item_hp="action.item && action.item.hp"
+        :item_mp="action.item && action.item.mp"
+        :item_race="action.item && action.item.raceId"
         @submit="handleSubmit"
       />
     </div>
@@ -33,7 +36,7 @@
 
 <script>
 import Vuetable from "vuetable-2";
-import EditRaceForm from "../components/forms/EditRace";
+import EditHeroForm from "../components/forms/EditHero";
 import cssTable from "../utils/css-table";
 import http from "../utils/http";
 import { CREATE_ACTION, EDIT_ACTION } from "../utils/actions";
@@ -41,7 +44,7 @@ import { CREATE_ACTION, EDIT_ACTION } from "../utils/actions";
 export default {
   components: {
     Vuetable,
-    EditRaceForm,
+    EditHeroForm,
   },
   data() {
     return {
@@ -51,21 +54,21 @@ export default {
         title: CREATE_ACTION,
         currentId: null,
         item: null,
-      },
+      }
     };
   },
   mounted() {
-    this.updateTable();
+    this.updateTable()
   },
   methods: {
     onActionDelete(action, data) {
-      http.delete(`/race/${data.id}`).then(() => this.updateTable());
+      http.delete(`/hero/${data.id}`).then(() => this.updateTable());
     },
     handleSubmit(data) {
       if (this.action.title === CREATE_ACTION) {
-        this.addRace(data);
+        this.addItem(data);
       } else {
-        this.editRace(data);
+        this.editItem(data);
       }
     },
     switchActionToEdit(event, data) {
@@ -82,17 +85,17 @@ export default {
       this.action.currentId = null;
       this.action.item = null;
     },
-    addRace(data) {
-      http.post("/race", data).then(() => this.updateTable());
+    addItem(data) {
+      http.post("/hero", data).then(() => this.updateTable());
     },
-    editRace(data) {
+    editItem(data) {
       http
-        .patch(`/race/${this.action.currentId}`, data)
+        .patch(`/hero/${this.action.currentId}`, data)
         .then(() => this.updateTable());
     },
     updateTable() {
       http
-        .get(`/race`)
+        .get(`/hero`)
         .then((res) => {
           this.data = res.data;
         })
@@ -115,7 +118,7 @@ export default {
   align-items: center;
   margin: 10px;
   padding: 10px;
-  max-width: 800px;
+  max-width: 1200px;
 
   .ui.celled.table tr td:first-child,
   .ui.celled.table tr th:first-child {

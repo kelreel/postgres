@@ -2,11 +2,17 @@
   <div id="app">
     <header>
       <div class="logo">
+        <img src="./assets/homm_logo.png" />
         <h3>Heroes App</h3>
       </div>
       <nav id="nav">
         <router-link to="/">Home</router-link>
         <router-link to="/race">Race</router-link>
+        <router-link to="/hero">Hero</router-link>
+        <router-link to="/creature">Creature</router-link>
+        <router-link to="/spell">Spell</router-link>
+        <router-link to="/army">Army</router-link>
+        <router-link to="/spell_list">Spell List</router-link>
       </nav>
     </header>
 
@@ -36,8 +42,22 @@ header {
   background-color: #e5e5e5;
 
   .logo {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
     margin-left: 1rem;
     color: #434343;
+
+    h3 {
+      margin-bottom: 1rem;
+    }
+
+    img {
+      width: 40px;
+      height: 40px;
+      margin-right: 15px;
+    }
   }
 
   nav {
