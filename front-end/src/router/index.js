@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import Race from "../views/Race.vue";
 import Hero from "../views/Hero.vue";
 import Creature from "../views/Creature";
+import Spell from "../views/Spell";
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,11 @@ const routes = [
     path: "/creature",
     name: "Creature",
     component: Creature,
+  },
+  {
+    path: "/spell",
+    name: "Spell",
+    component: Spell,
   },
 ];
 
