@@ -1,6 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
 import Race from "../views/Race.vue";
 import Hero from "../views/Hero.vue";
 import HeroProfile from "../views/HeroProfile.vue";
@@ -12,18 +11,13 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home,
+    name: "Hero",
+    component: Hero,
   },
   {
     path: "/race",
     name: "Race",
     component: Race,
-  },
-  {
-    path: "/hero",
-    name: "Hero",
-    component: Hero,
   },
   {
     path: "/hero/:id",

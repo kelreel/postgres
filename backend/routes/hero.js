@@ -3,7 +3,7 @@ const router = new Router({ prefix: '/hero' })
 const Hero = require('../models/Hero')
 
 router.get('/', async (ctx) => {
-  const hero = await Hero.query()
+  const hero = await Hero.query().orderBy('id')
   ctx.body = hero
 })
 
@@ -24,6 +24,7 @@ router.get('/:id/army', async (ctx) => {
       'army.count'
     )
     .for(ctx.params.id)
+    .orderBy('id')
   ctx.body = hero
 })
 
@@ -31,6 +32,7 @@ router.get('/:id/spells', async (ctx) => {
   const hero = await Hero.relatedQuery('spell')
     .select('spell_list.id', 'spell.name', 'spell.description', 'spell.mp')
     .for(ctx.params.id)
+    .orderBy('id')
   ctx.body = hero
 })
 

@@ -3,7 +3,7 @@ const router = new Router({ prefix: '/spell' })
 const Spell = require('../models/Spell')
 
 router.get('/', async (ctx) => {
-  const spell = await Spell.query()
+  const spell = await Spell.query().orderBy('id')
   ctx.body = spell
 })
 

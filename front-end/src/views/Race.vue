@@ -11,10 +11,10 @@
     >
       <div slot="actions" slot-scope="props">
         <div class="actions-btn">
-          <button class="ui small button" @click="switchActionToEdit('view-item', props.rowData)">
+          <button class="ui icon button" @click="switchActionToEdit('view-item', props.rowData)">
             <i class="edit icon"></i>
           </button>
-          <button class="ui small button" @click="onActionDelete('view-item', props.rowData)">
+          <button class="ui icon button" @click="onActionDelete('view-item', props.rowData)">
             <i class="trash alternate icon"></i>
           </button>
         </div>

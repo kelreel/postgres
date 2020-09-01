@@ -3,7 +3,7 @@ const router = new Router({ prefix: '/race' })
 const Race = require('../models/Race')
 
 router.get('/', async (ctx) => {
-  const races = await Race.query()
+  const races = await Race.query().orderBy('id')
   ctx.body = races
 })
 

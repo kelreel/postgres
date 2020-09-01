@@ -1,24 +1,31 @@
 <template>
   <div id="app">
     <header>
-      <div class="logo">
+      <div v-on:click="gohome" class="logo">
         <img src="./assets/homm_logo.png" />
         <h3>Heroes App</h3>
       </div>
       <nav id="nav">
-        <router-link to="/">Home</router-link>
+        <!-- <router-link to="/">Hero</router-link> -->
         <router-link to="/race">Race</router-link>
-        <router-link to="/hero">Hero</router-link>
         <router-link to="/creature">Creature</router-link>
         <router-link to="/spell">Spell</router-link>
-        <router-link to="/army">Army</router-link>
-        <router-link to="/spell_list">Spell List</router-link>
       </nav>
     </header>
 
     <router-view class="router-container" />
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    gohome: function () {
+      this.$router.push("/");
+    },
+  },
+};
+</script>
 
 <style lang="scss">
 body {
@@ -49,6 +56,11 @@ header {
     align-items: center;
     margin-left: 1rem;
     color: #434343;
+    cursor: pointer;
+
+    &:hover {
+      color: rgb(116, 116, 116);
+    }
 
     h3 {
       margin-bottom: 1.6rem;
@@ -67,11 +79,16 @@ header {
 
     a {
       text-decoration: none;
-      margin-right: 10px;
-      color:rgb(41, 41, 41);
+      font-size: 1.2rem;
+      margin-right: 20px;
+      color: rgb(41, 41, 41);
+
+      &.router-link-active {
+        text-decoration: underline;
+      }
 
       &:hover {
-        color: black;
+        color: rgb(116, 116, 116);
       }
     }
   }

@@ -11,10 +11,13 @@
     >
       <div slot="actions" slot-scope="props">
         <div class="actions-btn">
-          <button class="ui small button" @click="switchActionToEdit('view-item', props.rowData)">
+          <button class="ui small blue button" @click="$router.push(`/hero/${props.rowData.id}`)">
+            Info
+          </button>
+          <button class="ui icon button" @click="switchActionToEdit('view-item', props.rowData)">
             <i class="edit icon"></i>
           </button>
-          <button class="ui small button" @click="onActionDelete('view-item', props.rowData)">
+          <button class="ui icon red button" @click="onActionDelete('view-item', props.rowData)">
             <i class="trash alternate icon"></i>
           </button>
         </div>
@@ -54,11 +57,11 @@ export default {
         title: CREATE_ACTION,
         currentId: null,
         item: null,
-      }
+      },
     };
   },
   mounted() {
-    this.updateTable()
+    this.updateTable();
   },
   methods: {
     onActionDelete(action, data) {

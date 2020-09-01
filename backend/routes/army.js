@@ -8,7 +8,7 @@ router.get('/', async (ctx) => {
 })
 
 router.post('/', async (ctx) => {
-  const army = await Army.query().insert(ctx.request.body)
+  const army = await Army.query().insert(ctx.request.body).orderBy('id')
   ctx.body = army
 })
 

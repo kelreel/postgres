@@ -17,10 +17,10 @@
       >
         <div slot="actions" slot-scope="props">
           <div class="actions-btn">
-            <button class="ui small button" @click="switchActionToEdit('army', props.rowData)">
+            <button class="ui icon button" @click="switchActionToEdit('army', props.rowData)">
               <i class="edit icon"></i>
             </button>
-            <button class="ui small button" @click="onActionDeleteArmy('army', props.rowData)">
+            <button class="ui icon button" @click="onActionDeleteArmy('army', props.rowData)">
               <i class="trash alternate icon"></i>
             </button>
           </div>
@@ -30,7 +30,7 @@
         <h3>{{action.title}} {{action.item && action.item.name}}</h3>
         <EditArmyForm
           :item_creatureId="action.item && action.item.creatureId"
-          :item_hp="action.item && action.item.hp"
+          :item_count="action.item && action.item.count"
           @submit="handleSubmitArmy"
         />
       </div>
@@ -47,7 +47,7 @@
       >
         <div slot="actions" slot-scope="props">
           <div class="actions-btn">
-            <button class="ui small button" @click="onActionDeleteSpell('spell', props.rowData)">
+            <button class="ui icon button" @click="onActionDeleteSpell('spell', props.rowData)">
               <i class="trash alternate icon"></i>
             </button>
           </div>

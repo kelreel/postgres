@@ -3,10 +3,18 @@ const router = new Router({ prefix: '/creature' })
 const Creature = require('../models/Creature')
 
 router.get('/', async (ctx) => {
-  // const creature = await Creature.query()
-  //   .select('creature.id', 'raceId', 'race.name as race', 'description', 'hp')
-  //   .from('creature, race')
   const creature = await Creature.query()
+    .select(
+      'creature.id',
+      'creature.name',
+      'creature.description',
+      'creature.hp',
+      'creature.raceId',
+      'race.name as race_name'
+    )
+    .fullOuterJoin('race', 'race.id', 'creature.raceId')
+    .from('creature')
+    .orderBy('id')
   ctx.body = creature
 })
 
