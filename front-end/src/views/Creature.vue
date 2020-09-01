@@ -44,7 +44,7 @@ import { CREATE_ACTION, EDIT_ACTION } from "../utils/actions";
 export default {
   components: {
     Vuetable,
-    EditCreatureForm,
+    EditCreatureForm, 
   },
   data() {
     return {

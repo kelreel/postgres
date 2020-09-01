@@ -32,6 +32,7 @@ body {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   text-align: center;
   color: #2c3e50;
+  margin-bottom: 10px;
 }
 
 header {
@@ -50,7 +51,7 @@ header {
     color: #434343;
 
     h3 {
-      margin-bottom: 1rem;
+      margin-bottom: 1.6rem;
     }
 
     img {

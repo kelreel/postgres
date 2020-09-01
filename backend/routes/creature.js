@@ -3,6 +3,9 @@ const router = new Router({ prefix: '/creature' })
 const Creature = require('../models/Creature')
 
 router.get('/', async (ctx) => {
+  // const creature = await Creature.query()
+  //   .select('creature.id', 'raceId', 'race.name as race', 'description', 'hp')
+  //   .from('creature, race')
   const creature = await Creature.query()
   ctx.body = creature
 })

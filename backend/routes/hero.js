@@ -14,12 +14,23 @@ router.get('/:id', async (ctx) => {
 })
 
 router.get('/:id/army', async (ctx) => {
-  const hero = await Hero.relatedQuery('army').for(ctx.params.id)
+  const hero = await Hero.relatedQuery('army')
+    .select(
+      'army.id',
+      'creature.id as creatureId',
+      'creature.name',
+      'creature.raceId',
+      'creature.hp',
+      'army.count'
+    )
+    .for(ctx.params.id)
   ctx.body = hero
 })
 
 router.get('/:id/spells', async (ctx) => {
-  const hero = await Hero.relatedQuery('spell').for(ctx.params.id)
+  const hero = await Hero.relatedQuery('spell')
+    .select('spell_list.id', 'spell.name', 'spell.description', 'spell.mp')
+    .for(ctx.params.id)
   ctx.body = hero
 })
 
