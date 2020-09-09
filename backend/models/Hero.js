@@ -36,11 +36,6 @@ class Hero extends Model {
     return {
       race: {
         relation: Model.BelongsToOneRelation,
-
-        // The related model. This can be either a Model subclass constructor or an
-        // absolute file path to a module that exports one.
-        modelClass: Race,
-
         join: {
           from: 'hero.raceId',
           to: 'race.id',
