@@ -28,8 +28,7 @@ class Hero extends Model {
   static get relationMappings() {
     // One way to prevent circular references
     // is to require the model classes here.
-    const Race = require('./Race')
-    const Army = require('./Army')
+
     const Creature = require('./Creature')
     const Spell = require('./Spell')
 
